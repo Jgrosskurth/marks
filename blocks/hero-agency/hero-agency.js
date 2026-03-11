@@ -119,31 +119,41 @@ export default function decorate(block) {
   const inner = document.createElement('div');
   inner.classList.add('hero-agency-inner');
 
-  // Set up background — replace Mux thumbnail with looping video
+  // Set up background — detect video link, Mux thumbnail, or static image
   if (bgRow) {
+    bgRow.classList.add('hero-agency-bg');
+    const link = bgRow.querySelector('a[href]');
     const img = bgRow.querySelector('img');
-    if (img) {
-      bgRow.classList.add('hero-agency-bg');
-      const src = img.src || img.getAttribute('src') || '';
-      const muxMatch = src.match(/image\.mux\.com\/([^/]+)\/thumbnail/);
-      bgRow.textContent = '';
+    const videoHref = link?.href || '';
+    const isVideoLink = /\.(mp4|webm)(\?|$)/i.test(videoHref)
+      || videoHref.includes('stream.mux.com');
+    const imgSrc = img?.src || img?.getAttribute('src') || '';
+    const muxMatch = imgSrc.match(/image\.mux\.com\/([^/]+)\/thumbnail/);
 
-      if (muxMatch) {
+    if (isVideoLink || muxMatch) {
+      const video = document.createElement('video');
+      video.autoplay = true;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute('preload', 'auto');
+
+      if (isVideoLink) {
+        video.src = videoHref;
+        if (img) video.poster = img.src;
+      } else {
         const muxId = muxMatch[1];
-        const video = document.createElement('video');
-        video.autoplay = true;
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-        video.setAttribute('preload', 'auto');
         video.poster = `https://image.mux.com/${muxId}/thumbnail.jpg`;
         video.src = `https://stream.mux.com/${muxId}/high.mp4`;
-        bgRow.append(video);
-      } else {
-        const p = document.createElement('p');
-        p.append(img);
-        bgRow.append(p);
       }
+
+      bgRow.textContent = '';
+      bgRow.append(video);
+    } else if (img) {
+      bgRow.textContent = '';
+      const p = document.createElement('p');
+      p.append(img);
+      bgRow.append(p);
     }
   }
 
