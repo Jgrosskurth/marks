@@ -382,9 +382,9 @@
 
   .hero-agency .hero-headline-mid {
     grid-column: 1 / -1;
-    grid-row: 3;
+    grid-row: 2 / span 2;
     text-align: center;
-    align-self: start;
+    align-self: end;
   }
 
   .hero-agency .hero-headline-bot {
