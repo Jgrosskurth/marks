@@ -1,1 +1,31 @@
-/* Makemarks uses system fonts - no custom web fonts needed */
+@font-face {
+  font-family: "Surt Normal";
+  src: url("/fonts/SurtNormal-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Surt Normal";
+  src: url("/fonts/SurtNormal-Ultrabold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Surt Normal";
+  src: url("/fonts/SurtNormal-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Acta Deck";
+  src: url("/fonts/ActaDeck-Book.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

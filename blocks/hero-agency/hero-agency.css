@@ -1,47 +1,222 @@
+/* hero-agency: full-bleed hero with grid overlay and intro panel */
+.hero-agency-container {
+  margin: 0;
+}
+
 .hero-agency-container .hero-agency-wrapper {
   max-width: unset;
   padding: 0;
+  margin: 0;
 }
 
 .hero-agency {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
 }
 
-.hero-agency h1,
-.hero-agency h2,
-.hero-agency h3,
-.hero-agency h4,
-.hero-agency h5,
-.hero-agency h6,
-.hero-agency p {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
-.hero-agency.no-image * {
-  color: var(--text-color);
-}
-
-.hero-agency picture {
+/* background image layer */
+.hero-agency .hero-agency-bg {
   position: absolute;
-  z-index: -1;
   inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+  z-index: 0;
 }
 
-.hero-agency img {
-  object-fit: cover;
-  width: 100%;
+.hero-agency .hero-agency-bg p {
+  margin: 0;
   height: 100%;
 }
 
-@media (width >= 900px) {
+.hero-agency .hero-agency-bg picture {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-agency .hero-agency-bg img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+/* grid overlay */
+.hero-agency::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent calc(100% / 6 - 1px),
+      rgb(238 235 230 / 30%) calc(100% / 6 - 1px),
+      rgb(238 235 230 / 30%) calc(100% / 6)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(100% / 6 - 1px),
+      rgb(238 235 230 / 30%) calc(100% / 6 - 1px),
+      rgb(238 235 230 / 30%) calc(100% / 6)
+    );
+  pointer-events: none;
+}
+
+/* pink tint overlay */
+.hero-agency::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--color-pink);
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* headline overlay - large title */
+.hero-agency .hero-agency-headline {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 33.333vw;
+}
+
+.hero-agency h1 {
+  font-family: var(--font-primary);
+  font-weight: 900;
+  font-size: clamp(48px, 15vw, 200px);
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 85%);
+  text-align: center;
+  margin: 0;
+  mix-blend-mode: overlay;
+}
+
+/* intro panel - beige overlay card */
+.hero-agency .hero-agency-intro {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+.hero-agency .hero-agency-intro h2 {
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-graphite);
+  padding-block: 16px;
+  border-top: 1px solid var(--color-graphite);
+  border-bottom: 1px solid var(--color-graphite);
+  margin: 0;
+}
+
+.hero-agency .hero-agency-intro p {
+  font-family: var(--font-secondary);
+  font-size: max(16px, 1vw);
+  line-height: 1.3;
+  color: var(--color-graphite);
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+/* decorative color squares */
+.hero-agency .hero-color-squares {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  pointer-events: none;
+}
+
+.hero-agency .hero-color-squares span {
+  aspect-ratio: 1;
+}
+
+.hero-agency .hero-color-squares .sq-pink { background-color: var(--color-pink); }
+.hero-agency .hero-color-squares .sq-beige { background-color: var(--color-beige); }
+.hero-agency .hero-color-squares .sq-empty { background-color: transparent; }
+
+/* ============================================ */
+
+/* DESKTOP: 9-column grid layout                */
+
+/* ============================================ */
+@media (width >= 1024px) {
   .hero-agency {
-    padding: 40px 32px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    aspect-ratio: 9 / 5;
+    min-height: unset;
+  }
+
+  .hero-agency::before {
+    background-image:
+      repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent calc(100% / 9 - 1px),
+        rgb(238 235 230 / 30%) calc(100% / 9 - 1px),
+        rgb(238 235 230 / 30%) calc(100% / 9)
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent calc(100% / 5 - 1px),
+        rgb(238 235 230 / 30%) calc(100% / 5 - 1px),
+        rgb(238 235 230 / 30%) calc(100% / 5)
+      );
+  }
+
+  .hero-agency .hero-agency-headline {
+    grid-column: 1 / -1;
+    grid-row: 1 / span 3;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-agency h1 {
+    font-size: clamp(80px, 14vw, 240px);
+  }
+
+  .hero-agency .hero-agency-intro {
+    grid-column: 5 / span 2;
+    grid-row: 3 / span 2;
+    background-color: var(--color-beige);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1.5vw;
+  }
+
+  .hero-agency .hero-agency-intro h2 {
+    font-size: 2vw;
+  }
+
+  .hero-agency .hero-color-squares {
+    grid-column: 1 / -1;
+    grid-row: 5;
+    grid-template-columns: repeat(9, 1fr);
   }
 }

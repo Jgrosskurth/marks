@@ -21,14 +21,92 @@ function buildHeroBlock(main) {
   const picture = main.querySelector('picture');
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    // Check if h1 or picture is already inside a hero block
-    if (h1.closest('.hero') || picture.closest('.hero')) {
-      return; // Don't create a duplicate hero block
+    if (h1.closest('.hero') || h1.closest('.hero-agency') || picture.closest('.hero') || picture.closest('.hero-agency')) {
+      return;
     }
     const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [picture, h1] }));
     main.prepend(section);
   }
+}
+
+/**
+ * Decorates the contact section with scrolling locations and people grid.
+ * @param {Element} main The main element
+ */
+function decorateContactSection(main) {
+  const sections = main.querySelectorAll('.section');
+  sections.forEach((section) => {
+    const h2 = section.querySelector(':scope > .default-content-wrapper > h2');
+    const ul = section.querySelector(':scope > .default-content-wrapper > ul');
+    if (!h2 || !ul) return;
+    if (!h2.textContent.includes('Plug in')) return;
+
+    section.classList.add('section-contact');
+
+    // Find the default-content-wrapper and restructure
+    const wrapper = section.querySelector('.default-content-wrapper');
+    if (!wrapper) return;
+
+    // Collect CTA elements (h2, p, link) and images and locations
+    const ctaContainer = document.createElement('div');
+    ctaContainer.classList.add('contact-cta');
+
+    const imagesContainer = document.createElement('div');
+    imagesContainer.classList.add('contact-people');
+
+    const locationsContainer = document.createElement('div');
+    locationsContainer.classList.add('contact-locations');
+
+    // Move elements to appropriate containers
+    const children = [...wrapper.children];
+    let pastLink = false;
+
+    children.forEach((child) => {
+      if (child.tagName === 'UL') {
+        locationsContainer.append(child);
+        return;
+      }
+      if (child.tagName === 'P' && child.querySelector('img') && !child.querySelector('a')) {
+        imagesContainer.append(child);
+        pastLink = true;
+        return;
+      }
+      if (!pastLink) {
+        ctaContainer.append(child);
+      }
+    });
+
+    wrapper.textContent = '';
+    wrapper.append(ctaContainer);
+    if (imagesContainer.children.length > 0) wrapper.append(imagesContainer);
+    if (locationsContainer.children.length > 0) wrapper.append(locationsContainer);
+  });
+}
+
+/**
+ * Sets up IntersectionObserver for scroll-triggered animations.
+ */
+function setupScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('inview');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.animate-fade, .animate-slide-from-left, .animate-slide-from-right, .animate-border-top').forEach((el) => {
+    observer.observe(el);
+  });
+
+  // Auto-add fade animation to sections
+  document.querySelectorAll('main > .section').forEach((section) => {
+    if (!section.classList.contains('animate-fade')) {
+      section.classList.add('animate-fade');
+      observer.observe(section);
+    }
+  });
 }
 
 /**
@@ -124,6 +202,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  decorateContactSection(main);
 }
 
 /**
@@ -178,6 +257,7 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+  setupScrollAnimations();
 }
 
 /**

@@ -1,3 +1,19 @@
+/* carousel-casestudies: Split layout with media left, content right */
+.carousel-casestudies-container {
+  margin: 0;
+}
+
+.carousel-casestudies-container .carousel-casestudies-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel-casestudies {
+  position: relative;
+}
+
+/* slides container */
 .carousel-casestudies .carousel-casestudies-slides-container {
   position: relative;
 }
@@ -9,145 +25,230 @@
   padding: 0;
 }
 
+/* stacked slides (not horizontal scroll) */
 .carousel-casestudies .carousel-casestudies-slides {
-  display: flex;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  overflow: scroll clip;
-}
-
-.carousel-casestudies .carousel-casestudies-slides::-webkit-scrollbar {
-  display: none;
+  display: grid;
+  overflow: clip;
 }
 
 .carousel-casestudies .carousel-casestudies-slide {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
+  grid-area: 1 / 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  transition: opacity 0.35s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.carousel-casestudies .carousel-casestudies-slide[aria-hidden="false"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* image area */
+.carousel-casestudies .carousel-casestudies-slide-image {
   position: relative;
-  width: 100%;
-  min-height: min(50vw, calc(100dvh - var(--header-height)));
+  aspect-ratio: 1;
+  background-color: var(--color-graphite);
+  overflow: hidden;
 }
 
-.carousel-casestudies .carousel-casestudies-slide:has(.carousel-casestudies-slide-content[data-align='center']) {
-  align-items: center;
-}
-
-.carousel-casestudies .carousel-casestudies-slide:has(.carousel-casestudies-slide-content[data-align='right']) {
-  align-items: flex-end;
-}
-
-.carousel-casestudies .carousel-casestudies-slide .carousel-casestudies-slide-image picture {
+.carousel-casestudies .carousel-casestudies-slide-image picture {
   position: absolute;
   inset: 0;
 }
 
-.carousel-casestudies .carousel-casestudies-slide .carousel-casestudies-slide-image picture > img {
-  height: 100%;
+.carousel-casestudies .carousel-casestudies-slide-image img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.carousel-casestudies .carousel-casestudies-slide .carousel-casestudies-slide-content {
-  z-index: 1;
-  margin: 68px;
-  padding: 16px;
-  color: white;
-  background-color: rgb(19 19 19 / 75%);
-  position: relative;
-  width: var(--slide-content-width, auto);
-}
-
-.carousel-casestudies .carousel-casestudies-slide-indicators {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px 12px;
-  padding: 12px;
-  background-color: var(--light-color);
-  line-height: 0;
-}
-
-.carousel-casestudies .carousel-casestudies-slide-indicator button {
-  width: 24px;
-  height: 24px;
-  margin: 0;
-  padding: 0;
-  border-radius: 50%;
-  background-color: #dadada;
-  transition: background-color 0.2s;
-}
-
-.carousel-casestudies .carousel-casestudies-slide-indicator button:disabled,
-.carousel-casestudies .carousel-casestudies-slide-indicator button:hover,
-.carousel-casestudies .carousel-casestudies-slide-indicator button:focus-visible {
-  background-color: var(--text-color);
-}
-
-.carousel-casestudies .carousel-casestudies-navigation-buttons {
+/* decorative cutouts on image */
+.carousel-casestudies .carousel-casestudies-slide-image::before {
+  content: "";
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 12px;
-  right: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  top: 0;
+  right: 0;
+  width: 20%;
+  aspect-ratio: 1;
+  background-color: var(--color-beige);
   z-index: 1;
+}
+
+.carousel-casestudies .carousel-casestudies-slide-image::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20%;
+  aspect-ratio: 1;
+  background-color: var(--color-beige);
+  z-index: 1;
+}
+
+/* content area */
+.carousel-casestudies .carousel-casestudies-slide-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: transparent;
+  color: var(--color-graphite);
+  position: relative;
+  z-index: 1;
+}
+
+/* brand name label */
+.carousel-casestudies .carousel-casestudies-slide-content > p:first-child {
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+/* case study heading */
+.carousel-casestudies .carousel-casestudies-slide-content h3 {
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: 1.375rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-graphite);
+}
+
+/* description */
+.carousel-casestudies .carousel-casestudies-slide-content > p:last-child {
+  font-family: var(--font-secondary);
+  font-size: max(16px, 1vw);
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* navigation buttons */
+.carousel-casestudies .carousel-casestudies-navigation-buttons {
+  display: grid;
+  width: 96px;
+  grid-template-columns: repeat(2, 1fr);
+  position: absolute;
+  inset: auto 20px 20px auto;
+  z-index: 2;
+  transform: none;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 .carousel-casestudies .carousel-casestudies-navigation-buttons button {
-  position: relative;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   margin: 0;
-  border-radius: 50%;
   padding: 0;
-  background-color: rgb(19 19 19 / 25%);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  position: relative;
+  background-color: var(--color-graphite);
   transition: background-color 0.2s;
 }
 
-.carousel-casestudies .carousel-casestudies-navigation-buttons button:hover,
-.carousel-casestudies .carousel-casestudies-navigation-buttons button:focus-visible {
-  background-color: rgb(19 19 19 / 75%);
+.carousel-casestudies .carousel-casestudies-navigation-buttons button.slide-prev {
+  background-color: var(--color-white);
 }
 
 .carousel-casestudies .carousel-casestudies-navigation-buttons button::after {
   display: block;
-  content: '';
+  content: "";
   border: 2px solid;
   border-bottom: 0;
   border-left: 0;
-  height: 12px;
-  width: 12px;
+  height: 10px;
+  width: 10px;
   position: absolute;
   top: 50%;
   left: calc(50% + 2px);
   transform: translate(-50%, -50%) rotate(-135deg);
+  border-color: var(--color-graphite);
 }
 
 .carousel-casestudies .carousel-casestudies-navigation-buttons button.slide-next::after {
+  border-color: var(--color-white);
   transform: translate(-50%, -50%) rotate(45deg);
   left: calc(50% - 2px);
 }
 
-@media (width >= 600px) {
+.carousel-casestudies .carousel-casestudies-navigation-buttons button:hover {
+  background-color: var(--color-yellow-alt);
+}
+
+.carousel-casestudies .carousel-casestudies-navigation-buttons button:hover::after {
+  border-color: var(--color-graphite);
+}
+
+/* slide indicators - hide them */
+.carousel-casestudies .carousel-casestudies-slide-indicators {
+  display: none;
+}
+
+/* ============================================ */
+
+/* DESKTOP: each slide uses internal 9-col grid */
+
+/* ============================================ */
+@media (width >= 1024px) {
+  .carousel-casestudies {
+    aspect-ratio: 9 / 5;
+  }
+
+  /* Each slide becomes its own 9-column grid */
+  .carousel-casestudies .carousel-casestudies-slide {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: 1fr;
+  }
+
+  /* Image fills left 5 columns */
+  .carousel-casestudies .carousel-casestudies-slide-image {
+    grid-column: 1 / span 5;
+    grid-row: 1;
+    aspect-ratio: unset;
+  }
+
+  .carousel-casestudies .carousel-casestudies-slide-image img {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Content in right 4 columns */
+  .carousel-casestudies .carousel-casestudies-slide-content {
+    grid-column: 6 / span 4;
+    grid-row: 1;
+    padding: 2vw;
+    gap: 1.5vw;
+    place-self: center center;
+    max-width: 100%;
+  }
+
+  /* Navigation buttons positioned top-right of content area */
   .carousel-casestudies .carousel-casestudies-navigation-buttons {
-    left: 24px;
-    right: 24px;
+    position: absolute;
+    inset: 0 0 auto auto;
+    z-index: 3;
   }
 
-  .carousel-casestudies .carousel-casestudies-slide .carousel-casestudies-slide-content {
-    --slide-content-width: calc((100% - 184px) / 2);
-
-    margin: 92px;
+  .carousel-casestudies .carousel-casestudies-slide-content h3 {
+    font-size: 1.5rem;
+    padding-bottom: 1.5vw;
   }
+}
 
-  .carousel-casestudies .carousel-casestudies-slide .carousel-casestudies-slide-content[data-align='justify'] {
-    --slide-content-width: auto;
+@media (width >= 1400px) {
+  .carousel-casestudies .carousel-casestudies-slide-content h3 {
+    font-size: 1.75rem;
   }
 }

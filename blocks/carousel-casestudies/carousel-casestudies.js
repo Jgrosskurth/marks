@@ -1,71 +1,51 @@
-function updateActiveSlide(slide) {
-  const block = slide.closest('.carousel-casestudies');
-  const slideIndex = parseInt(slide.dataset.slideIndex, 10);
-  block.dataset.activeSlide = slideIndex;
-
+function updateActiveSlide(block, slideIndex) {
   const slides = block.querySelectorAll('.carousel-casestudies-slide');
+  const total = slides.length;
+  let idx = slideIndex;
+  if (idx < 0) idx = total - 1;
+  if (idx >= total) idx = 0;
 
-  slides.forEach((aSlide, idx) => {
-    aSlide.setAttribute('aria-hidden', idx !== slideIndex);
-    aSlide.querySelectorAll('a').forEach((link) => {
-      if (idx !== slideIndex) {
-        link.setAttribute('tabindex', '-1');
-      } else {
-        link.removeAttribute('tabindex');
-      }
-    });
+  block.dataset.activeSlide = idx;
+
+  slides.forEach((slide, i) => {
+    slide.setAttribute('aria-hidden', i !== idx);
   });
 
   const indicators = block.querySelectorAll('.carousel-casestudies-slide-indicator');
-  indicators.forEach((indicator, idx) => {
-    if (idx !== slideIndex) {
-      indicator.querySelector('button').removeAttribute('disabled');
+  indicators.forEach((indicator, i) => {
+    const btn = indicator.querySelector('button');
+    if (i !== idx) {
+      btn.removeAttribute('disabled');
     } else {
-      indicator.querySelector('button').setAttribute('disabled', 'true');
+      btn.setAttribute('disabled', 'true');
     }
   });
 }
 
-export function showSlide(block, slideIndex = 0) {
-  const slides = block.querySelectorAll('.carousel-casestudies-slide');
-  let realSlideIndex = slideIndex < 0 ? slides.length - 1 : slideIndex;
-  if (slideIndex >= slides.length) realSlideIndex = 0;
-  const activeSlide = slides[realSlideIndex];
-
-  activeSlide.querySelectorAll('a').forEach((link) => link.removeAttribute('tabindex'));
-  block.querySelector('.carousel-casestudies-slides').scrollTo({
-    top: 0,
-    left: activeSlide.offsetLeft,
-    behavior: 'smooth',
-  });
-}
-
 function bindEvents(block) {
+  const prev = block.querySelector('.slide-prev');
+  const next = block.querySelector('.slide-next');
+
+  if (prev) {
+    prev.addEventListener('click', () => {
+      updateActiveSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
+    });
+  }
+  if (next) {
+    next.addEventListener('click', () => {
+      updateActiveSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
+    });
+  }
+
   const slideIndicators = block.querySelector('.carousel-casestudies-slide-indicators');
-  if (!slideIndicators) return;
-
-  slideIndicators.querySelectorAll('button').forEach((button) => {
-    button.addEventListener('click', (e) => {
-      const slideIndicator = e.currentTarget.parentElement;
-      showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
+  if (slideIndicators) {
+    slideIndicators.querySelectorAll('button').forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const indicator = e.currentTarget.parentElement;
+        updateActiveSlide(block, parseInt(indicator.dataset.targetSlide, 10));
+      });
     });
-  });
-
-  block.querySelector('.slide-prev').addEventListener('click', () => {
-    showSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
-  });
-  block.querySelector('.slide-next').addEventListener('click', () => {
-    showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
-  });
-
-  const slideObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) updateActiveSlide(entry.target);
-    });
-  }, { threshold: 0.5 });
-  block.querySelectorAll('.carousel-casestudies-slide').forEach((slide) => {
-    slideObserver.observe(slide);
-  });
+  }
 }
 
 function createSlide(row, slideIndex, carouselId) {
@@ -102,7 +82,6 @@ export default async function decorate(block) {
 
   const slidesWrapper = document.createElement('ul');
   slidesWrapper.classList.add('carousel-casestudies-slides');
-  block.prepend(slidesWrapper);
 
   let slideIndicators;
   if (!isSingleSlide) {
@@ -116,10 +95,9 @@ export default async function decorate(block) {
     const slideNavButtons = document.createElement('div');
     slideNavButtons.classList.add('carousel-casestudies-navigation-buttons');
     slideNavButtons.innerHTML = `
-      <button type="button" class= "slide-prev" aria-label="Previous Slide"></button>
+      <button type="button" class="slide-prev" aria-label="Previous Slide"></button>
       <button type="button" class="slide-next" aria-label="Next Slide"></button>
     `;
-
     container.append(slideNavButtons);
   }
 
@@ -139,6 +117,9 @@ export default async function decorate(block) {
 
   container.append(slidesWrapper);
   block.prepend(container);
+
+  // Initialize first slide as active
+  updateActiveSlide(block, 0);
 
   if (!isSingleSlide) {
     bindEvents(block);

@@ -1,34 +1,76 @@
-footer {
-  background-color: #000;
-  color: #fff;
-  padding: 40px 24px;
+/* MARKS footer - transparent with horizontal links */
+footer .footer {
+  padding: 20px;
+  position: relative;
 }
 
-footer .default-content-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
+footer .footer .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: unset;
+  margin: 0;
+  border-top: 1px solid var(--color-graphite);
+  padding-top: 20px;
 }
 
-footer a:any-link {
-  color: #fff;
+footer .footer a:any-link {
+  color: var(--color-graphite);
   text-decoration: none;
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
 }
 
-footer a:hover {
+footer .footer a:hover {
   opacity: 0.7;
 }
 
-footer ul {
+footer .footer ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
+  flex-direction: column;
+  gap: 8px;
 }
 
-footer p {
-  margin: 16px 0 0;
-  font-size: 12px;
-  opacity: 0.6;
+footer .footer p {
+  font-family: var(--font-primary);
+  font-size: 0.625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  margin: 0;
+  opacity: 0.7;
+}
+
+@media (width >= 1024px) {
+  footer .footer {
+    padding: 2vw;
+  }
+
+  footer .footer .default-content-wrapper {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 2vw;
+  }
+
+  footer .footer ul {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+
+@media (width >= 1400px) {
+  footer .footer ul {
+    gap: 24px;
+  }
+
+  footer .footer p {
+    font-size: 0.6875rem;
+  }
 }

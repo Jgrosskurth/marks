@@ -1,49 +1,29 @@
-import { getMetadata } from '../../scripts/aem.js';
-
 /**
- * loads and decorates the header
+ * MARKS header - Fixed square logo in top-left corner
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // fetch nav content
-  const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  const logo = document.createElement('a');
+  logo.href = '/';
+  logo.className = 'marks-logo';
+  logo.setAttribute('aria-label', 'MARKS home');
+  logo.innerHTML = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="var(--color-graphite, #24272a)"/>
+    <text x="50" y="68" text-anchor="middle" font-family="'Surt Normal', sans-serif"
+      font-weight="900" font-size="32" fill="var(--color-beige, #eeebe6)"
+      letter-spacing="-1">marks.</text>
+  </svg>`;
 
-  const resp = await fetch(`${navPath}.plain.html`);
-  if (resp.ok) {
-    const html = await resp.text();
-    const nav = document.createElement('nav');
-    nav.id = 'nav';
-    nav.innerHTML = html;
+  block.textContent = '';
+  block.append(logo);
 
-    const navSections = nav.querySelector('.nav-sections');
-    if (navSections) {
-      navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        navSection.addEventListener('click', () => {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        });
-      });
-    }
+  // Shrink logo on scroll (mobile only)
+  const observer = new IntersectionObserver(([entry]) => {
+    logo.classList.toggle('off-top', !entry.isIntersecting);
+  }, { threshold: 0 });
 
-    const hamburger = document.createElement('button');
-    hamburger.type = 'button';
-    hamburger.classList.add('nav-hamburger');
-    hamburger.setAttribute('aria-controls', 'nav');
-    hamburger.setAttribute('aria-label', 'Open navigation');
-    hamburger.innerHTML = '<span class="nav-hamburger-icon"></span>';
-    hamburger.addEventListener('click', () => {
-      const expanded = nav.getAttribute('aria-expanded') === 'true';
-      nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-      hamburger.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
-    });
-    nav.prepend(hamburger);
-    nav.setAttribute('aria-expanded', 'false');
-
-    const navWrapper = document.createElement('div');
-    navWrapper.className = 'nav-wrapper';
-    navWrapper.append(nav);
-    block.append(navWrapper);
-  }
+  const sentinel = document.createElement('div');
+  sentinel.style.cssText = 'position:absolute;top:0;height:1px;width:1px;';
+  document.body.prepend(sentinel);
+  observer.observe(sentinel);
 }
