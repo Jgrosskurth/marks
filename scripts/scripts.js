@@ -154,20 +154,34 @@ function decorateWorkSection(main) {
     title.classList.add('work-title', 'animate-fade');
     title.innerHTML = '<h2>Work</h2>';
 
-    const intro = document.createElement('div');
-    intro.classList.add('work-intro', 'animate-fade');
-    intro.innerHTML = '<span class="work-intro-label">Impact</span>'
-      + '<h3>Experience the first platform in\u00a0action</h3>'
-      + '<p>We don\u2019t just promise a bold new brand world. We prove it. From bold, '
-      + 'disruptive rebranding to groundbreaking brand activations, the work we do for '
-      + 'clients every day all around the globe doesn\u2019t just show up or stand out '
-      + '\u2014 it makes a\u00a0mark.</p>';
+    // Inject intro as the first slide of the carousel
+    const slidesWrapper = carousel.querySelector('.carousel-casestudies-slides');
+    if (slidesWrapper) {
+      const introSlide = document.createElement('li');
+      introSlide.classList.add('carousel-casestudies-slide');
+      introSlide.innerHTML = '<div class="carousel-casestudies-slide-content">'
+        + '<p>Impact</p>'
+        + '<h3>Experience the first platform in\u00a0action</h3>'
+        + '<p>We don\u2019t just promise a bold new brand world. We prove it. From bold, '
+        + 'disruptive rebranding to groundbreaking brand activations, the work we do for '
+        + 'clients every day all around the globe doesn\u2019t just show up or stand out '
+        + '\u2014 it makes a\u00a0mark.</p>'
+        + '</div>';
+      slidesWrapper.prepend(introSlide);
+
+      // Re-index all slides and reset to show intro (slide 0)
+      const allSlides = slidesWrapper.querySelectorAll('.carousel-casestudies-slide');
+      allSlides.forEach((slide, idx) => {
+        slide.dataset.slideIndex = idx;
+        slide.setAttribute('aria-hidden', idx !== 0);
+      });
+      carousel.dataset.activeSlide = 0;
+    }
 
     const wrapper = section.querySelector('.carousel-casestudies-wrapper');
     if (wrapper) {
       section.insertBefore(mediaContainer, wrapper);
       section.insertBefore(title, wrapper);
-      section.insertBefore(intro, wrapper);
     }
   });
 }
@@ -215,7 +229,7 @@ function setupScrollAnimations() {
   }, { threshold: 0.1 });
 
   // Add border-top animation to headings with top borders
-  document.querySelectorAll('.columns-about h2, .section-work .work-intro h3, .section-contact .contact-cta h2').forEach((el) => {
+  document.querySelectorAll('.columns-about h2, .section-contact .contact-cta h2').forEach((el) => {
     el.classList.add('animate-border-top');
   });
 
@@ -361,7 +375,6 @@ export function decorateMain(main) {
   decorateBlocks(main);
   decorateButtons(main);
   decorateContactSection(main);
-  decorateWorkSection(main);
   decoratePageFooter(main);
 }
 
@@ -404,6 +417,7 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
 
+  decorateWorkSection(main);
   buildSectionDividers(main);
 
   // Optimize image delivery for below-fold images
