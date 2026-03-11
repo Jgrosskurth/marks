@@ -151,7 +151,18 @@ export default function decorate(block) {
     }
   }
 
-  if (headlineRow) headlineRow.classList.add('hero-agency-headline');
+  // Build split headline: each line independently positioned
+  let headlineEl = null;
+  if (headlineRow) {
+    headlineEl = document.createElement('div');
+    headlineEl.classList.add('hero-agency-headline');
+    ['The Brand', 'Creation', 'Platform'].forEach((text, i) => {
+      const span = document.createElement('span');
+      span.classList.add(['hero-headline-top', 'hero-headline-mid', 'hero-headline-bot'][i]);
+      span.textContent = text;
+      headlineEl.append(span);
+    });
+  }
 
   // Create intro cards container
   const introsContainer = document.createElement('div');
@@ -208,7 +219,7 @@ export default function decorate(block) {
 
   // Assemble inner
   if (bgRow) inner.append(bgRow);
-  if (headlineRow) inner.append(headlineRow);
+  if (headlineEl) inner.append(headlineEl);
   inner.append(introsContainer);
   inner.append(gridOverlay);
   inner.append(squares);
@@ -219,7 +230,7 @@ export default function decorate(block) {
 
   // Entry animations
   if (bgRow) bgRow.classList.add('hero-anim-bg');
-  if (headlineRow) headlineRow.classList.add('hero-anim-headline');
+  if (headlineEl) headlineEl.classList.add('hero-anim-headline');
   introsContainer.classList.add('hero-anim-intro');
   squares.classList.add('hero-anim-squares');
 
