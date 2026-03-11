@@ -267,6 +267,12 @@ main > .section > div {
   padding: 0;
 }
 
+/* Page footer list reset (eager to prevent FOUC with bullets) */
+.section-page-footer ul {
+  list-style: none;
+  padding: 0;
+}
+
 /* scroll-based animations */
 .animate-fade {
   opacity: 0;

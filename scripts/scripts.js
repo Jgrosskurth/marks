@@ -77,6 +77,14 @@ function decorateContactSection(main) {
       }
     });
 
+    // Force button styling on the CTA link (mailto or any link in contact)
+    const ctaLink = ctaContainer.querySelector('a[href]');
+    if (ctaLink) {
+      const p = ctaLink.closest('p');
+      if (p) p.className = 'button-wrapper';
+      ctaLink.className = 'button primary';
+    }
+
     wrapper.textContent = '';
     wrapper.append(ctaContainer);
     if (imagesContainer.children.length > 0) wrapper.append(imagesContainer);
@@ -89,28 +97,30 @@ function decorateContactSection(main) {
  * @param {Element} main The main element
  */
 function decoratePageFooter(main) {
+  // Find the footer section by content (UL with links + P with MARKS copyright)
   const sections = [...main.querySelectorAll(':scope > .section')];
-  const lastSection = sections[sections.length - 1];
-  if (!lastSection) return;
+  const footerSection = sections.find((section) => {
+    const ul = section.querySelector(':scope > .default-content-wrapper > ul');
+    const p = section.querySelector(':scope > .default-content-wrapper > p');
+    return ul && p && p.textContent.includes('MARKS');
+  });
+  if (!footerSection) return;
 
-  // Identify footer section: has a UL with links and a P with copyright text
-  const ul = lastSection.querySelector(':scope > .default-content-wrapper > ul');
-  const p = lastSection.querySelector(':scope > .default-content-wrapper > p');
-  if (!ul || !p) return;
-  if (!p.textContent.includes('MARKS')) return;
+  footerSection.classList.add('section-page-footer');
 
-  lastSection.classList.add('section-page-footer');
-
-  const wrapper = lastSection.querySelector('.default-content-wrapper');
-  if (wrapper) {
-    // Remove bullet styling from list
+  const ul = footerSection.querySelector('.default-content-wrapper > ul');
+  if (ul) {
     ul.setAttribute('role', 'list');
-
-    // Open links in new tab
     ul.querySelectorAll('a').forEach((a) => {
       a.setAttribute('target', '_blank');
       a.setAttribute('rel', 'noreferrer noopener');
     });
+  }
+
+  // Remove trailing empty sections
+  for (let i = sections.length - 1; i >= 0; i -= 1) {
+    if (sections[i] === footerSection) break;
+    if (!sections[i].textContent.trim()) sections[i].remove();
   }
 }
 
@@ -198,12 +208,23 @@ function setupScrollAnimations() {
     observer.observe(el);
   });
 
-  // Auto-add fade animation to sections
+  // Auto-add fade animation to sections (skip hero and page footer)
   document.querySelectorAll('main > .section').forEach((section) => {
-    if (!section.classList.contains('animate-fade')) {
-      section.classList.add('animate-fade');
-      observer.observe(section);
-    }
+    const hasHero = section.querySelector('.hero-agency');
+    const isFooter = section.classList.contains('section-page-footer');
+    if (hasHero || isFooter || section.classList.contains('animate-fade')) return;
+    section.classList.add('animate-fade');
+    observer.observe(section);
+  });
+
+  // Immediately reveal elements already in the viewport
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.animate-fade, .animate-slide-from-left, .animate-slide-from-right, .animate-border-top').forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('inview');
+      }
+    });
   });
 }
 
