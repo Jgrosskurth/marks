@@ -85,6 +85,99 @@ function decorateContactSection(main) {
 }
 
 /**
+ * Decorates the last section of main as the page footer (links + copyright).
+ * @param {Element} main The main element
+ */
+function decoratePageFooter(main) {
+  const sections = [...main.querySelectorAll(':scope > .section')];
+  const lastSection = sections[sections.length - 1];
+  if (!lastSection) return;
+
+  // Identify footer section: has a UL with links and a P with copyright text
+  const ul = lastSection.querySelector(':scope > .default-content-wrapper > ul');
+  const p = lastSection.querySelector(':scope > .default-content-wrapper > p');
+  if (!ul || !p) return;
+  if (!p.textContent.includes('MARKS')) return;
+
+  lastSection.classList.add('section-page-footer');
+
+  const wrapper = lastSection.querySelector('.default-content-wrapper');
+  if (wrapper) {
+    // Remove bullet styling from list
+    ul.setAttribute('role', 'list');
+
+    // Open links in new tab
+    ul.querySelectorAll('a').forEach((a) => {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noreferrer noopener');
+    });
+  }
+}
+
+/**
+ * Decorates the work section with a title and intro panel above the carousel.
+ * @param {Element} main The main element
+ */
+function decorateWorkSection(main) {
+  const sections = main.querySelectorAll('.section');
+  sections.forEach((section) => {
+    const carousel = section.querySelector('.carousel-casestudies');
+    if (!carousel) return;
+
+    section.classList.add('section-work');
+
+    const title = document.createElement('div');
+    title.classList.add('work-title', 'animate-fade');
+    title.innerHTML = '<h2>Work</h2>';
+
+    const intro = document.createElement('div');
+    intro.classList.add('work-intro', 'animate-fade');
+    intro.innerHTML = '<span class="work-intro-label">Impact</span>'
+      + '<h3>Experience the first platform in\u00a0action</h3>'
+      + '<p>We don\u2019t just promise a bold new brand world. We prove it. From bold, '
+      + 'disruptive rebranding to groundbreaking brand activations, the work we do for '
+      + 'clients every day all around the globe doesn\u2019t just show up or stand out '
+      + '\u2014 it makes a\u00a0mark.</p>';
+
+    const wrapper = section.querySelector('.carousel-casestudies-wrapper');
+    if (wrapper) {
+      section.insertBefore(title, wrapper);
+      section.insertBefore(intro, wrapper);
+    }
+  });
+}
+
+/**
+ * Creates decorative color square dividers between major sections.
+ * @param {Element} main The main element
+ */
+function buildSectionDividers(main) {
+  const sections = [...main.querySelectorAll(':scope > .section')];
+
+  function createDivider(type, count) {
+    const div = document.createElement('div');
+    div.classList.add('section-divider', `divider-${type}`);
+    for (let i = 1; i <= count; i += 1) {
+      const cell = document.createElement('div');
+      cell.classList.add('divider-cell', `cell-${i}`);
+      div.append(cell);
+    }
+    return div;
+  }
+
+  const aboutSection = sections.find((s) => s.querySelector('.columns-about'));
+  const workSection = sections.find((s) => s.querySelector('.carousel-casestudies'));
+
+  if (aboutSection) {
+    aboutSection.after(createDivider('teal', 5));
+  }
+
+  if (workSection) {
+    workSection.after(createDivider('yellow', 7));
+  }
+}
+
+/**
  * Sets up IntersectionObserver for scroll-triggered animations.
  */
 function setupScrollAnimations() {
@@ -95,6 +188,11 @@ function setupScrollAnimations() {
       }
     });
   }, { threshold: 0.1 });
+
+  // Add border-top animation to headings with top borders
+  document.querySelectorAll('.columns-about h2, .section-work .work-intro h3, .section-contact .contact-cta h2').forEach((el) => {
+    el.classList.add('animate-border-top');
+  });
 
   document.querySelectorAll('.animate-fade, .animate-slide-from-left, .animate-slide-from-right, .animate-border-top').forEach((el) => {
     observer.observe(el);
@@ -107,6 +205,30 @@ function setupScrollAnimations() {
       observer.observe(section);
     }
   });
+}
+
+/**
+ * Sets up scroll-driven parallax on the hero background.
+ */
+function setupParallax() {
+  const heroBg = document.querySelector('.hero-agency .hero-agency-bg');
+  if (!heroBg) return;
+
+  let ticking = false;
+  const speed = 0.35;
+
+  function updateParallax() {
+    const { scrollY } = window;
+    heroBg.style.transform = `translateY(${scrollY * speed}px)`;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
 }
 
 /**
@@ -203,6 +325,8 @@ export function decorateMain(main) {
   decorateBlocks(main);
   decorateButtons(main);
   decorateContactSection(main);
+  decorateWorkSection(main);
+  decoratePageFooter(main);
 }
 
 /**
@@ -244,6 +368,8 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
 
+  buildSectionDividers(main);
+
   // Optimize image delivery for below-fold images
   main.querySelectorAll('img[loading="lazy"]').forEach((img) => {
     img.decoding = 'async';
@@ -258,6 +384,7 @@ async function loadLazy(doc) {
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
   setupScrollAnimations();
+  setupParallax();
 }
 
 /**

@@ -63,6 +63,18 @@
   display: block;
 }
 
+/* "m" watermark SVG */
+.columns-about .letter-watermark {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60%;
+  height: auto;
+  fill: var(--color-graphite);
+  z-index: 2;
+  pointer-events: none;
+}
+
 /* decorative squares */
 .columns-about .columns-about-img-col::before {
   content: "";

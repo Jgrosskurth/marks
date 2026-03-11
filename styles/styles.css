@@ -301,6 +301,7 @@ main > .section > div {
 
 .animate-border-top {
   position: relative;
+  border-top-color: transparent;
 }
 
 .animate-border-top::before {
@@ -313,6 +314,7 @@ main > .section > div {
   display: block;
   position: absolute;
   top: 0;
+  z-index: 1;
 }
 
 .animate-border-top.inview::before {
