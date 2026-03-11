@@ -1,2 +1,4 @@
 mountpoints:
-  /: https://adobe-my.sharepoint.com/personal/jgrosskurth_adobe_com/Documents/makemarks
+  /:
+    url: https://content.da.live/Jgrosskurth/marks/
+    type: markup
