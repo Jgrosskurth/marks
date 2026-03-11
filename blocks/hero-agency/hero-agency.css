@@ -251,19 +251,15 @@
 
 .hero-agency .hero-scroll-icon {
   position: relative;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--color-white);
-  color: var(--color-graphite);
+  width: 48px;
+  height: 48px;
+  display: block;
 }
 
-.hero-agency .hero-scroll-icon svg {
-  width: 24px;
-  height: 24px;
+.hero-agency .hero-scroll-icon > svg {
+  width: 48px;
+  height: 48px;
+  stroke: var(--color-graphite);
 }
 
 .hero-agency .hero-scroll-progress {
@@ -273,21 +269,15 @@
   width: 100%;
   height: calc(100% * var(--progress, 0));
   overflow: hidden;
-  border-radius: 50%;
-  background: var(--color-graphite);
-  color: var(--color-white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .hero-agency .hero-scroll-progress svg {
-  width: 24px;
-  height: 24px;
+  width: 48px;
+  height: 48px;
+  stroke: var(--color-white);
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
 }
 
 /* Decorative color squares */
