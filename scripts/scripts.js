@@ -137,46 +137,18 @@ function decorateWorkSection(main) {
     section.classList.add('section-work');
 
     // Create work media video (left side on desktop)
+    const WORK_MUX_ID = 'NkzVLB4dIcQliGucdvd00ZJLQw00xExfZ00';
     const mediaContainer = document.createElement('div');
     mediaContainer.classList.add('work-media');
-
-    // Check for authored video link in the section, fall back to hardcoded Mux video
-    const videoLink = section.querySelector('a[href*="stream.mux.com"], a[href*=".mp4"]');
-    const muxImg = section.querySelector('img[src*="image.mux.com"]');
-    const WORK_MUX_ID = 'NkzVLB4dIcQliGucdvd00ZJLQw00xExfZ00';
-
-    function createMuxVideo(src, poster) {
-      const video = document.createElement('video');
-      video.autoplay = true;
-      video.muted = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.setAttribute('preload', 'auto');
-      video.src = src;
-      if (poster) video.poster = poster;
-      return video;
-    }
-
-    if (videoLink) {
-      const img = videoLink.closest('p')?.querySelector('img') || videoLink.querySelector('img');
-      mediaContainer.append(createMuxVideo(videoLink.href, img?.src));
-      videoLink.closest('p')?.remove();
-    } else if (muxImg) {
-      const muxMatch = muxImg.src.match(/image\.mux\.com\/([^/]+)\/thumbnail/);
-      if (muxMatch) {
-        mediaContainer.append(createMuxVideo(
-          `https://stream.mux.com/${muxMatch[1]}/high.mp4`,
-          muxImg.src,
-        ));
-        muxImg.closest('p')?.remove();
-      }
-    } else {
-      // Hardcoded fallback for the work section video
-      mediaContainer.append(createMuxVideo(
-        `https://stream.mux.com/${WORK_MUX_ID}/high.mp4`,
-        `https://image.mux.com/${WORK_MUX_ID}/thumbnail.jpg`,
-      ));
-    }
+    const workVideo = document.createElement('video');
+    workVideo.autoplay = true;
+    workVideo.muted = true;
+    workVideo.loop = true;
+    workVideo.playsInline = true;
+    workVideo.setAttribute('preload', 'auto');
+    workVideo.poster = `https://image.mux.com/${WORK_MUX_ID}/thumbnail.jpg`;
+    workVideo.src = `https://stream.mux.com/${WORK_MUX_ID}/high.mp4`;
+    mediaContainer.append(workVideo);
 
     const title = document.createElement('div');
     title.classList.add('work-title', 'animate-fade');
@@ -193,7 +165,7 @@ function decorateWorkSection(main) {
 
     const wrapper = section.querySelector('.carousel-casestudies-wrapper');
     if (wrapper) {
-      if (mediaContainer.children.length > 0) section.insertBefore(mediaContainer, wrapper);
+      section.insertBefore(mediaContainer, wrapper);
       section.insertBefore(title, wrapper);
       section.insertBefore(intro, wrapper);
     }
