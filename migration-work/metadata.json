@@ -1,0 +1,87 @@
+{
+  "title": "Marks. The world's first Brand Creation Platform.",
+  "description": "Built to hack brand relevance.",
+  "ogTitle": "Marks. The world's first Brand Creation Platform.",
+  "ogDescription": "Built to hack brand relevance.",
+  "ogImage": "https://www.datocms-assets.com/167231/1757329994-marks-share-image.jpg?auto=format&fit=max&w=1200",
+  "canonical": "https://makemarks.com/",
+  "url": "https://makemarks.com/",
+  "generator": "Astro v5.10.1",
+  "locale": "en",
+  "type": "website",
+  "siteName": "Marks",
+  "themeColor": "#000",
+  "previewPath": "content/index",
+  "images": [
+    {
+      "src": "https://www.datocms-assets.com/167231/1758623712-marks_people-05.png",
+      "alt": "Team member photo",
+      "context": "contact-section"
+    },
+    {
+      "src": "https://www.datocms-assets.com/167231/1758623712-marks_people-08.png",
+      "alt": "Team member photo",
+      "context": "contact-section"
+    },
+    {
+      "src": "https://www.datocms-assets.com/167231/1758623712-marks_people-07.png",
+      "alt": "Team member photo",
+      "context": "contact-section"
+    },
+    {
+      "src": "https://www.datocms-assets.com/167231/1758623712-marks_people-03.png",
+      "alt": "Team member photo",
+      "context": "contact-section"
+    },
+    {
+      "src": "https://www.datocms-assets.com/167231/1758623712-marks_people-09.png",
+      "alt": "Team member photo",
+      "context": "contact-section"
+    },
+    {
+      "src": "https://www.datocms-assets.com/167231/1758623712-marks_people-06.png",
+      "alt": "Team member photo",
+      "context": "contact-section"
+    },
+    {
+      "src": "https://www.datocms-assets.com/167231/1758623712-marks_people-04.png",
+      "alt": "Team member photo",
+      "context": "contact-section"
+    },
+    {
+      "src": "https://www.datocms-assets.com/167231/1758623712-marks_people-01.png",
+      "alt": "Team member photo",
+      "context": "contact-section"
+    },
+    {
+      "src": "https://www.datocms-assets.com/167231/1758623712-marks_people-02.png",
+      "alt": "Team member photo",
+      "context": "contact-section"
+    },
+    {
+      "src": "https://www.datocms-assets.com/167231/1757343544-woman-with-coffee-1.jpg",
+      "alt": "Woman with coffee",
+      "context": "about-section-parallax"
+    }
+  ],
+  "videos": [
+    {
+      "src": "https://stream.mux.com/P6UGAw00NPyaFLcUJYCn02jQF5A00Gn6z8a/high.mp4",
+      "poster": "https://image.mux.com/P6UGAw00NPyaFLcUJYCn02jQF5A00Gn6z8a/thumbnail.jpg",
+      "context": "cover-background"
+    },
+    {
+      "src": "https://stream.mux.com/CjT8GXPgOxPvB2MzgiCpqCVcYEoNjgHF/high.mp4",
+      "context": "cover-background"
+    },
+    {
+      "src": "https://stream.mux.com/eSlfwQTBdEsJckxB5NTT01vicCUwiPG5n/high.mp4",
+      "context": "cover-background"
+    },
+    {
+      "src": "https://stream.mux.com/4CEoNpuHqieJ2ljcRRg3wor2yfALJueL/high.mp4",
+      "poster": "https://image.mux.com/4CEoNpuHqieJ2ljcRRg3wor2yfALJueL/thumbnail.jpg",
+      "context": "about-section"
+    }
+  ]
+}

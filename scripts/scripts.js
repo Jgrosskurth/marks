@@ -136,6 +136,11 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    // Boost LCP image for faster discovery
+    const lcpImg = main.querySelector('img');
+    if (lcpImg) {
+      lcpImg.fetchPriority = 'high';
+    }
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
@@ -159,6 +164,11 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+
+  // Optimize image delivery for below-fold images
+  main.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+    img.decoding = 'async';
+  });
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

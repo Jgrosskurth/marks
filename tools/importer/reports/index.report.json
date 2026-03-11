@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://makemarks.com/",
+  "path": "index",
+  "timestamp": "2026-03-11T03:44:50.099Z",
+  "title": "Marks. The world's first Brand Creation Platform.",
+  "template": "agency-homepage",
+  "blocks": [
+    "hero-agency",
+    "cards-pillars",
+    "columns-about",
+    "carousel-casestudies"
+  ]
+}

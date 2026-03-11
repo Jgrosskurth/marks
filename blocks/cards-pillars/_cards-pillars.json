@@ -1,0 +1,8 @@
+{
+  "name": "Cards Pillars",
+  "variantOf": "cards",
+  "description": "Numbered service pillars grid with hover effects for agency homepage",
+  "contentModel": {
+    "perRow": "Number + Name (e.g. '01 Creation') | H3 heading | Description paragraph"
+  }
+}

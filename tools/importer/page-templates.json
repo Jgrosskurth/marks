@@ -1,0 +1,93 @@
+{
+  "templates": [
+    {
+      "name": "agency-homepage",
+      "urls": [
+        "https://makemarks.com/"
+      ],
+      "description": "Single-page agency website with animated scrolling sections, portfolio showcase, and contact information",
+      "blocks": [
+        {
+          "name": "hero-agency",
+          "instances": [
+            ".cover"
+          ]
+        },
+        {
+          "name": "cards-pillars",
+          "instances": [
+            ".cover-pillars"
+          ]
+        },
+        {
+          "name": "columns-about",
+          "instances": [
+            ".section-about"
+          ]
+        },
+        {
+          "name": "carousel-casestudies",
+          "instances": [
+            ".section-work .items"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero-cover",
+          "name": "Hero / Cover Section",
+          "selector": ".cover",
+          "style": "dark",
+          "blocks": [
+            "hero-agency",
+            "cards-pillars"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "about",
+          "name": "About / Platform Description",
+          "selector": ".section-about",
+          "style": null,
+          "blocks": [
+            "columns-about"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "work",
+          "name": "Work / Case Studies",
+          "selector": ".section-work",
+          "style": null,
+          "blocks": [
+            "carousel-casestudies"
+          ],
+          "defaultContent": [
+            ".section-work .item.showreel"
+          ]
+        },
+        {
+          "id": "contact",
+          "name": "Contact / CTA Section",
+          "selector": ".section-contact",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".section-contact .content-container",
+            ".section-contact ul"
+          ]
+        },
+        {
+          "id": "footer",
+          "name": "Footer",
+          "selector": "footer",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "footer"
+          ]
+        }
+      ]
+    }
+  ]
+}

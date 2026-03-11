@@ -1,0 +1,9 @@
+{
+  "name": "Columns About",
+  "variantOf": "columns",
+  "description": "Split layout with text on left and video/media on right for about section",
+  "contentModel": {
+    "col1": "H2 heading | Bold lead text | Body paragraph",
+    "col2": "Video poster image"
+  }
+}

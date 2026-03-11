@@ -1,1 +1,100 @@
 /* add global styles that can be loaded post LCP here */
+
+/* Social share icons in sidebar */
+.social-share {
+  display: flex;
+  gap: 12px;
+  padding: 0 0 24px;
+}
+
+.social-share a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Featured products in sidebar */
+.featured-products {
+  padding: 0 0 24px;
+  border-bottom: 1px solid var(--gray-200, #e0e0e0);
+  margin-bottom: 24px;
+}
+
+.featured-products h3 {
+  font-family: var(--heading-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 16px;
+}
+
+.featured-products ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featured-products li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--gray-200, #e0e0e0);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: border-color 0.2s ease;
+}
+
+.featured-products li img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.featured-products li div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.featured-products .fp-name {
+  font-size: var(--body-font-size-s);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.featured-products .fp-price {
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+}
+
+/* Hover states */
+.social-share a:hover {
+  color: var(--accent-color);
+}
+
+.featured-products li a:hover {
+  border-color: var(--gray-400, #999);
+}
+
+/* Icon sizing */
+.social-share .icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.social-share .icon img {
+  width: 100%;
+  height: 100%;
+}

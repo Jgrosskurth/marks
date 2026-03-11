@@ -1,0 +1,12 @@
+{
+  "variantOf": "carousel",
+  "source": "new",
+  "created": "2026-03-11",
+  "usage": ["https://makemarks.com/"],
+  "visualCharacteristics": {
+    "layout": "full-width slides with overlay content",
+    "background": "video backgrounds per slide",
+    "typography": "brand name labels with uppercase titles",
+    "animation": "smooth slide transitions with prev/next navigation"
+  }
+}

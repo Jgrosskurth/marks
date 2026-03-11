@@ -1,0 +1,12 @@
+{
+  "variantOf": "cards",
+  "source": "new",
+  "created": "2026-03-11",
+  "usage": ["https://makemarks.com/"],
+  "visualCharacteristics": {
+    "layout": "5-column grid with numbered items",
+    "background": "light with hover overlays",
+    "typography": "numbered labels with headings",
+    "animation": "hover overlay reveal"
+  }
+}

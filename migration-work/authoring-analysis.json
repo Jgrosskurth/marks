@@ -1,0 +1,182 @@
+{
+  "url": "https://makemarks.com/",
+  "title": "Marks. The world's first Brand Creation Platform.",
+  "sections": [
+    {
+      "id": "hero-cover",
+      "name": "Hero / Cover Section",
+      "sectionStyle": "dark",
+      "content": [
+        {
+          "sequenceId": "hero-video",
+          "decision": "block",
+          "blockName": "hero-agency",
+          "variantOf": "hero",
+          "reason": "Full-viewport hero with video background, SVG headline, and intro text. New variant needed - existing hero is a simple image banner. This variant needs full-viewport height, video background support, overlay text, and scroll indicator.",
+          "sourceSelector": ".cover",
+          "authoringNotes": "Hero with video background. H1: 'The Brand Creation Platform'. Subheading: 'Welcome to the post-agency era'. Body text about dismantling old systems. Video poster image for fallback.",
+          "contentModel": {
+            "row1": "Video poster image (https://image.mux.com/P6UGAw00NPyaFLcUJYCn02jQF5A00Gn6z8a/thumbnail.jpg)",
+            "row2": "H1: The Brand Creation Platform | H2: Welcome to the post-agency era | Body text | CTA: Scroll"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pillars",
+      "name": "Service Pillars Section",
+      "sectionStyle": null,
+      "content": [
+        {
+          "sequenceId": "pillars-grid",
+          "decision": "block",
+          "blockName": "cards-pillars",
+          "variantOf": "cards",
+          "reason": "5 service pillars with number, name, heading, and description. New variant needed - existing cards is a product listing. This variant needs numbered items, hover effects, and a grid-based layout.",
+          "sourceSelector": ".cover-pillars",
+          "authoringNotes": "5 cards for: Creation, Commerce, Content, Experience, Engineering. Each has a number (01-05), name, H3 heading, and description paragraph.",
+          "contentModel": {
+            "perRow": "Number + Name (e.g. '01 Creation') | H3 heading | Description paragraph"
+          },
+          "items": [
+            { "label": "01 Creation", "heading": "Craft more meaningful brands on demand", "description": "Brands must move at culture's velocity..." },
+            { "label": "02 Commerce", "heading": "Drive deep brand connection across divides", "description": "Commerce is shifting—faster, broader, and everywhere..." },
+            { "label": "03 Content", "heading": "Produce rich brand stories at scale", "description": "Attention is fragmented; relevance has to be earned..." },
+            { "label": "04 Experience", "heading": "Make every brand moment momentous", "description": "Every brand–consumer encounter is a chance to shape how people feel..." },
+            { "label": "05 Engineering", "heading": "Shape what brand impact is made of", "description": "Endurance now means designing for regulation, materials..." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "name": "About / Platform Description Section",
+      "sectionStyle": null,
+      "content": [
+        {
+          "sequenceId": "about-columns",
+          "decision": "block",
+          "blockName": "columns-about",
+          "variantOf": "columns",
+          "reason": "Split layout with text on left and video/media on right. New variant needed - existing columns has different styling. This needs a clean split with bordered headings and parallax-style media.",
+          "sourceSelector": ".section-about",
+          "authoringNotes": "Left column: H2 'One giant leap for brand kind', bold lead 'Accelerating your brand's relevance', body paragraph. Right column: Video with poster image. The large decorative 'm' SVG letter is a design element to recreate in CSS.",
+          "contentModel": {
+            "col1": "H2: One giant leap for brand kind | **Accelerating your brand's relevance** | Body paragraph",
+            "col2": "Video poster image (https://image.mux.com/4CEoNpuHqieJ2ljcRRg3wor2yfALJueL/thumbnail.jpg)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "work",
+      "name": "Work / Case Studies Section",
+      "sectionStyle": null,
+      "content": [
+        {
+          "sequenceId": "work-intro",
+          "decision": "default",
+          "reason": "Section intro with label, heading, and description. Simple default content before the carousel block.",
+          "sourceSelector": ".section-work .item.showreel",
+          "authoringNotes": "Label: 'Impact'. H2: 'EXPERIENCE THE FIRST PLATFORM IN ACTION'. Body: 'We don't just promise a bold new brand world...'"
+        },
+        {
+          "sequenceId": "work-carousel",
+          "decision": "block",
+          "blockName": "carousel-casestudies",
+          "variantOf": "carousel",
+          "reason": "12 case study slides with brand name, title, and description. New variant needed - no carousel exists locally. This variant needs full-width slides with video backgrounds, brand labels, and minimal text overlay.",
+          "sourceSelector": ".section-work .items",
+          "authoringNotes": "12 slides, each with: brand name label, H3 title, description paragraph. Video backgrounds per slide served from Mux. Use video poster thumbnails as slide images.",
+          "contentModel": {
+            "perRow": "Video thumbnail image | Brand label + H3 title + Description paragraph"
+          },
+          "items": [
+            { "brand": "Respawn", "title": "UNLOCKING BRAND LOVE BEYOND THE PROS" },
+            { "brand": "STARBUCKS", "title": "SERVING UP GEN Z ENERGY IN EVERY SIP" },
+            { "brand": "Nike", "title": "UNLEASHING THE ENERGY IN PEGASUS 41" },
+            { "brand": "Rizla", "title": "SHOWING HOW TO ROLL UP WITH NEW RIZZ" },
+            { "brand": "MAYENDA", "title": "DISTILLING NATURE INTO VISUAL FORM" },
+            { "brand": "Lego books", "title": "WEAVING BOOKS & BRICKS INTO STORIES" },
+            { "brand": "Puma", "title": "Turning up the Turtle Power at ASW" },
+            { "brand": "Puma", "title": "TURNING OUTERWEAR INTO A STATEMENT" },
+            { "brand": "ALOUETTE", "title": "HELPING FRENCH FLAVOR SING FOR ALL" },
+            { "brand": "AIR FRANCE", "title": "ELEVATING EXPERIENCE AT 40,000 FEET" },
+            { "brand": "Asics", "title": "MAXING OUT ASICS' LA MARATHON EXPERIENCE" },
+            { "brand": "Gore-Tex", "title": "BEHIND THE SCENES OF NYC DESIGN" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "name": "Contact / CTA Section",
+      "sectionStyle": null,
+      "content": [
+        {
+          "sequenceId": "contact-cta",
+          "decision": "default",
+          "reason": "Simple CTA with heading, subtitle, and email link. Standard default content - no block needed.",
+          "sourceSelector": ".section-contact .content-container",
+          "authoringNotes": "H2: 'Plug in. Power on.' | Body: 'Every bold move starts with a hello.' | Link button: 'Get in touch' (mailto:contact@makemarks.com)"
+        },
+        {
+          "sequenceId": "contact-locations",
+          "decision": "default",
+          "reason": "Scrolling ticker of 37 global office locations. This is a simple list that can be default content, with the ticker animation handled by CSS/JS decoration.",
+          "sourceSelector": ".section-contact ul",
+          "authoringNotes": "Unordered list of 37 cities: Chicago, New York, Baltimore, Providence, Cincinnati, Battle Creek, Pittsburgh, Portland, San Francisco, Toronto, Mexico City, Querétaro, Bogota, São Paulo, London, Manchester, Nottingham, Birmingham, Cleckheaton, Amsterdam, Paris, Barcelona, Germany, Istanbul, Mumbai, Mauritius, Shanghai, Guangzhou, Hong Kong, Seoul, Singapore, Manila, Bangkok, Penang, Tokyo, Melbourne, Sydney"
+        }
+      ]
+    },
+    {
+      "id": "footer",
+      "name": "Footer",
+      "sectionStyle": null,
+      "content": [
+        {
+          "sequenceId": "footer-links",
+          "decision": "default",
+          "reason": "Standard footer with links and copyright. Handled by the footer block decorator.",
+          "sourceSelector": "footer",
+          "authoringNotes": "Links: Propelis (https://propelis.com), Instagram (https://www.instagram.com/marks.global/), LinkedIn, Careers, Accessibility. Copyright: ©MARKS 2025—Part of the Propelis group"
+        }
+      ]
+    }
+  ],
+  "blockInventory": [
+    {
+      "blockName": "hero-agency",
+      "variantOf": "hero",
+      "source": "new variant",
+      "usage": "Cover/hero section with video background, full-viewport"
+    },
+    {
+      "blockName": "cards-pillars",
+      "variantOf": "cards",
+      "source": "new variant",
+      "usage": "5 numbered service pillars grid"
+    },
+    {
+      "blockName": "columns-about",
+      "variantOf": "columns",
+      "source": "new variant",
+      "usage": "About section split layout with media"
+    },
+    {
+      "blockName": "carousel-casestudies",
+      "variantOf": "carousel",
+      "source": "new variant",
+      "usage": "12 case study slides with brand labels and navigation"
+    }
+  ],
+  "sectionMetadata": [
+    { "sectionId": "hero-cover", "style": "dark" }
+  ],
+  "designNotes": {
+    "animations": "Heavy use of scroll-triggered animations, IntersectionObserver fade-ins, parallax effects, video background swapping. These are design enhancements to implement in block CSS/JS, not content concerns.",
+    "decorativeElements": "Animated color grid overlay (72 cells), geometric dividers between sections, large decorative 'm' letter SVG, rotating logo animation. These are decorative design elements to recreate in CSS.",
+    "videoStrategy": "Videos hosted on Mux streaming. In EDS, use video poster thumbnails as images with optional video embed blocks or lazy-loaded video elements.",
+    "svgHeadlines": "H1 uses SVG paths instead of text. Convert to standard heading text in EDS for accessibility and editability."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Carousel Case Studies",
+  "variantOf": "carousel",
+  "description": "Case study portfolio carousel with brand labels, video backgrounds, and prev/next navigation",
+  "contentModel": {
+    "perRow": "Video thumbnail image | Brand label + H3 title + Description paragraph"
+  }
+}

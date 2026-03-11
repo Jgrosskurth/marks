@@ -1,0 +1,244 @@
+{
+  "url": "https://makemarks.com/",
+  "title": "Marks. The world's first Brand Creation Platform.",
+  "sections": [
+    {
+      "id": "logo-header",
+      "name": "Logo / Header",
+      "selector": "svg.logo",
+      "style": null,
+      "description": "SVG logo wordmark 'marks.' fixed at top-left, toggles class on scroll",
+      "background": "transparent",
+      "height": 142,
+      "contentSequences": [
+        {
+          "type": "logo",
+          "description": "SVG wordmark logo - 'marks.' text rendered as paths"
+        }
+      ]
+    },
+    {
+      "id": "cover-hero",
+      "name": "Cover / Hero Section",
+      "selector": ".cover",
+      "style": "dark",
+      "description": "Full-viewport hero with animated video background, color grid overlay, SVG headline 'The Brand Creation Platform', scroll-triggered intro panels, and 5 service pillars",
+      "background": "video backgrounds with animated color grid",
+      "height": 3938,
+      "contentSequences": [
+        {
+          "type": "video-background",
+          "description": "Background videos that swap based on scroll position (3 Mux streams)"
+        },
+        {
+          "type": "animated-grid",
+          "description": "72-cell color grid overlay with animated colored cells (pink/cyan/yellow)"
+        },
+        {
+          "type": "headline",
+          "description": "H1 'The Brand Creation Platform' rendered as SVG paths across 3 lines"
+        },
+        {
+          "type": "tagline",
+          "description": "Animated tagline text"
+        },
+        {
+          "type": "intro-panel",
+          "description": "Scroll-triggered intro: 'Welcome to the post-agency era' with description and scroll button"
+        },
+        {
+          "type": "pillars",
+          "description": "5 service pillars displayed as interactive grid items with hover overlays",
+          "items": [
+            { "number": "01", "name": "Creation", "heading": "Craft more meaningful brands on demand" },
+            { "number": "02", "name": "Commerce", "heading": "Drive deep brand connection across divides" },
+            { "number": "03", "name": "Content", "heading": "Produce rich brand stories at scale" },
+            { "number": "04", "name": "Experience", "heading": "Make every brand moment momentous" },
+            { "number": "05", "name": "Engineering", "heading": "Shape what brand impact is made of" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-1",
+      "name": "Divider 1",
+      "selector": ".divider-1",
+      "style": null,
+      "description": "Animated geometric divider with colored shapes between hero and about sections",
+      "background": "transparent with colored blocks",
+      "height": 142,
+      "contentSequences": [
+        {
+          "type": "decorative",
+          "description": "Animated color blocks divider"
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "name": "About / Platform Description",
+      "selector": ".section-about",
+      "style": null,
+      "description": "Split-layout section: text on left with H2 'One giant leap for brand kind' and description, video with large 'm' letter SVG on right",
+      "background": "transparent/light",
+      "height": 569,
+      "contentSequences": [
+        {
+          "type": "text-content",
+          "description": "H2 heading, bold lead text 'Accelerating your brand's relevance', body paragraph about the Brand Creation Platform"
+        },
+        {
+          "type": "media",
+          "description": "Video with Mux stream and large decorative 'm' letter SVG overlay"
+        }
+      ]
+    },
+    {
+      "id": "divider-2",
+      "name": "Divider 2",
+      "selector": ".divider-2",
+      "style": null,
+      "description": "Animated geometric divider with colored shapes",
+      "background": "transparent with colored blocks",
+      "height": 284,
+      "contentSequences": [
+        {
+          "type": "decorative",
+          "description": "Animated color blocks divider"
+        }
+      ]
+    },
+    {
+      "id": "work",
+      "name": "Work / Case Studies Carousel",
+      "selector": ".section-work",
+      "style": null,
+      "description": "Portfolio carousel with video backgrounds, showreel intro, and 12 individual case study slides with prev/next navigation",
+      "background": "transparent with video backgrounds per slide",
+      "height": 711,
+      "contentSequences": [
+        {
+          "type": "carousel-intro",
+          "description": "Showreel slide: 'Impact' label, H2 'EXPERIENCE THE FIRST PLATFORM IN ACTION', description paragraph"
+        },
+        {
+          "type": "carousel-slides",
+          "description": "12 case study slides, each with: brand name label, H3 title, description paragraph, and background video",
+          "items": [
+            { "brand": "Respawn", "title": "UNLOCKING BRAND LOVE BEYOND THE PROS" },
+            { "brand": "STARBUCKS", "title": "SERVING UP GEN Z ENERGY IN EVERY SIP" },
+            { "brand": "Nike", "title": "UNLEASHING THE ENERGY IN PEGASUS 41" },
+            { "brand": "Rizla", "title": "SHOWING HOW TO ROLL UP WITH NEW RIZZ" },
+            { "brand": "MAYENDA", "title": "DISTILLING NATURE INTO VISUAL FORM" },
+            { "brand": "Lego books", "title": "WEAVING BOOKS & BRICKS INTO STORIES" },
+            { "brand": "Puma", "title": "Turning up the Turtle Power at ASW" },
+            { "brand": "Puma", "title": "TURNING OUTERWEAR INTO A STATEMENT" },
+            { "brand": "ALOUETTE", "title": "HELPING FRENCH FLAVOR SING FOR ALL" },
+            { "brand": "AIR FRANCE", "title": "ELEVATING EXPERIENCE AT 40,000 FEET" },
+            { "brand": "Asics", "title": "MAXING OUT ASICS' LA MARATHON EXPERIENCE" },
+            { "brand": "Gore-Tex", "title": "BEHIND THE SCENES OF NYC DESIGN" }
+          ]
+        },
+        {
+          "type": "carousel-navigation",
+          "description": "Previous/Next arrow buttons for slide navigation"
+        }
+      ]
+    },
+    {
+      "id": "divider-3",
+      "name": "Divider 3",
+      "selector": ".divider-3",
+      "style": null,
+      "description": "Animated geometric divider with colored shapes",
+      "background": "transparent with colored blocks",
+      "height": 284,
+      "contentSequences": [
+        {
+          "type": "decorative",
+          "description": "Animated color blocks divider"
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "name": "Contact / CTA Section",
+      "selector": ".section-contact",
+      "style": null,
+      "description": "Contact CTA with heading 'Plug in. Power on.', tagline, email link, rotating team photos, and scrolling locations ticker",
+      "background": "transparent/light",
+      "height": 427,
+      "contentSequences": [
+        {
+          "type": "cta-content",
+          "description": "H2 'Plug in. Power on.', subtext 'Every bold move starts with a hello.', 'Get in touch' mailto link button"
+        },
+        {
+          "type": "photo-animation",
+          "description": "Grid of 9 rotating team member photos with animation"
+        },
+        {
+          "type": "locations-ticker",
+          "description": "Horizontally scrolling ticker of 37 global office locations (Chicago, New York, London, Tokyo, etc.)"
+        }
+      ]
+    },
+    {
+      "id": "divider-4",
+      "name": "Divider 4 / Logo Animation",
+      "selector": ".divider-4",
+      "style": null,
+      "description": "Animated rotating 'marks.' logo SVGs with colored blocks",
+      "background": "transparent with colored blocks",
+      "height": 284,
+      "contentSequences": [
+        {
+          "type": "decorative",
+          "description": "Rotating logo animation with color blocks"
+        }
+      ]
+    },
+    {
+      "id": "footer",
+      "name": "Footer",
+      "selector": "footer",
+      "style": null,
+      "description": "Minimal footer with links (Propelis, Instagram, LinkedIn, Careers, Accessibility) and copyright",
+      "background": "transparent with top border animation",
+      "height": 67,
+      "contentSequences": [
+        {
+          "type": "footer-links",
+          "description": "List of 5 links: Propelis, Instagram, LinkedIn, Careers, Accessibility"
+        },
+        {
+          "type": "copyright",
+          "description": "©MARKS 2025—Part of the Propelis group"
+        }
+      ]
+    }
+  ],
+  "designCharacteristics": {
+    "typography": "Custom/system fonts, heavy use of SVG text for hero headlines",
+    "colorPalette": ["#000 (theme)", "pink/coral", "cyan/turquoise", "yellow", "cream/beige background"],
+    "animations": [
+      "Scroll-triggered section transitions",
+      "Video background swapping on scroll",
+      "Animated color grid overlay (72 cells)",
+      "IntersectionObserver fade-in animations",
+      "Parallax content movement",
+      "Rotating photo grid in contact section",
+      "Horizontal location ticker scroll",
+      "Rotating logo SVG animation",
+      "Pillar hover overlays"
+    ],
+    "interactivity": [
+      "Carousel with prev/next navigation for case studies",
+      "Scroll-driven section state changes (data-current-section)",
+      "Pillar hover/click to reveal overlay panels",
+      "Scroll indicator button in intro"
+    ],
+    "layout": "Full-viewport sections with parallax, split-layouts, and grid-based decorative elements",
+    "technology": "Astro v5.10.1, Mux video streaming, DatoCMS for images, Netlify hosting"
+  }
+}

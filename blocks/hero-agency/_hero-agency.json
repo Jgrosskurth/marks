@@ -1,0 +1,9 @@
+{
+  "name": "Hero Agency",
+  "variantOf": "hero",
+  "description": "Full-viewport hero with video background, SVG headline, and intro text for agency homepage",
+  "contentModel": {
+    "row1": "Video poster image",
+    "row2": "H1 heading | H2 subheading | Body text | CTA link"
+  }
+}

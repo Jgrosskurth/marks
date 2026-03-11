@@ -1,0 +1,12 @@
+{
+  "variantOf": "hero",
+  "source": "new",
+  "created": "2026-03-11",
+  "usage": ["https://makemarks.com/"],
+  "visualCharacteristics": {
+    "layout": "full-viewport with overlay text",
+    "background": "video with poster image fallback",
+    "typography": "large SVG headline converted to text",
+    "animation": "scroll-triggered intro panels"
+  }
+}

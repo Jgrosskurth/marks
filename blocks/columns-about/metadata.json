@@ -1,0 +1,12 @@
+{
+  "variantOf": "columns",
+  "source": "new",
+  "created": "2026-03-11",
+  "usage": ["https://makemarks.com/"],
+  "visualCharacteristics": {
+    "layout": "50/50 split with text and media",
+    "background": "transparent/light",
+    "typography": "bordered headings with bold lead",
+    "animation": "parallax-style media movement"
+  }
+}
