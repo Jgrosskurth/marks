@@ -377,21 +377,21 @@
     grid-column: 2 / -1;
     grid-row: 1 / span 2;
     text-align: right;
-    align-self: end;
+    align-self: start;
   }
 
   .hero-agency .hero-headline-mid {
     grid-column: 1 / -1;
     grid-row: 2 / span 2;
     text-align: center;
-    align-self: end;
+    align-self: start;
   }
 
   .hero-agency .hero-headline-bot {
     grid-column: 1 / -1;
     grid-row: 5;
     text-align: left;
-    align-self: end;
+    align-self: start;
   }
 
   /* Intro cards use grid positioning on desktop — square cells */
