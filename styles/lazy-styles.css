@@ -381,7 +381,7 @@
   }
 
   .section-work .work-title {
-    grid-column: 5 / -1;
+    grid-column: 6 / -1;
     grid-row: 1;
     padding: 2vw;
     z-index: 1;
