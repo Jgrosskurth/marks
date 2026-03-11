@@ -212,7 +212,7 @@ export default function decorate(block) {
   // Create grid overlay
   const gridOverlay = document.createElement('div');
   gridOverlay.classList.add('hero-grid-overlay');
-  for (let i = 0; i < 9 * 5; i += 1) {
+  for (let i = 0; i < 9 * 6; i += 1) {
     const cell = document.createElement('div');
     cell.classList.add('hero-grid-cell');
     gridOverlay.append(cell);

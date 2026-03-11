@@ -359,14 +359,11 @@
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    aspect-ratio: 9 / 5;
-    height: auto;
-    min-height: 100svh;
   }
 
   .hero-agency .hero-grid-overlay {
     grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(6, calc(100vw / 9));
   }
 
   .hero-agency .hero-agency-headline {
@@ -381,11 +378,11 @@
     font-size: clamp(80px, 14vw, 240px);
   }
 
-  /* Intro cards use grid positioning on desktop */
+  /* Intro cards use grid positioning on desktop — square cells */
   .hero-agency .hero-intros {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(5, calc(100vw / 9));
   }
 
   .hero-agency .hero-intro-card {
