@@ -87,7 +87,23 @@ function decorateContactSection(main) {
 
     wrapper.textContent = '';
     wrapper.append(ctaContainer);
-    if (imagesContainer.children.length > 0) wrapper.append(imagesContainer);
+    if (imagesContainer.children.length > 0) {
+      wrapper.append(imagesContainer);
+
+      // Crossfading carousel: show one image at a time
+      const photos = [...imagesContainer.children];
+      if (photos.length > 1) {
+        let current = 0;
+        photos[current].classList.add('active');
+        setInterval(() => {
+          photos[current].classList.remove('active');
+          current = (current + 1) % photos.length;
+          photos[current].classList.add('active');
+        }, 3000);
+      } else if (photos.length === 1) {
+        photos[0].classList.add('active');
+      }
+    }
     if (locationsContainer.children.length > 0) wrapper.append(locationsContainer);
   });
 }
@@ -206,6 +222,7 @@ function buildSectionDividers(main) {
 
   const aboutSection = sections.find((s) => s.querySelector('.columns-about'));
   const workSection = sections.find((s) => s.querySelector('.carousel-casestudies'));
+  const contactSection = sections.find((s) => s.classList.contains('section-contact'));
 
   if (aboutSection) {
     aboutSection.after(createDivider('teal', 5));
@@ -213,6 +230,19 @@ function buildSectionDividers(main) {
 
   if (workSection) {
     workSection.after(createDivider('yellow', 7));
+  }
+
+  if (contactSection) {
+    const footerDivider = createDivider('footer', 6);
+    const photoCell = document.createElement('div');
+    photoCell.classList.add('divider-cell', 'cell-photo');
+    const img = document.createElement('img');
+    img.src = 'https://www.datocms-assets.com/167231/1757343544-woman-with-coffee-1.jpg';
+    img.alt = '';
+    img.loading = 'lazy';
+    photoCell.append(img);
+    footerDivider.append(photoCell);
+    contactSection.after(footerDivider);
   }
 }
 

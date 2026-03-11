@@ -162,6 +162,55 @@
   background-color: var(--color-yellow);
 }
 
+/* Footer divider (between contact and footer, with photo) */
+.divider-footer {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.divider-footer .cell-1 {
+  grid-area: 2 / 1;
+  background-color: var(--color-yellow);
+}
+
+.divider-footer .cell-2 {
+  grid-area: 1 / 2;
+  background-color: var(--color-yellow-alt);
+}
+
+.divider-footer .cell-3 {
+  grid-area: 2 / 4;
+  background-color: var(--color-yellow);
+}
+
+.divider-footer .cell-4 {
+  grid-area: 1 / 5;
+  background-color: var(--color-yellow-alt);
+}
+
+.divider-footer .cell-5 {
+  grid-area: 2 / 6;
+  background-color: var(--color-yellow);
+}
+
+.divider-footer .cell-6 {
+  grid-area: 1 / 1;
+  background-color: var(--color-yellow-alt);
+}
+
+.divider-footer .cell-photo {
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 2;
+  overflow: hidden;
+}
+
+.divider-footer .cell-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* Work section media (video on left side) */
 .section-work .work-media {
   display: none;
@@ -257,17 +306,25 @@
   opacity: 0.85;
 }
 
-/* People images grid */
+/* People images — crossfading carousel */
 .section-contact .contact-people {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
 }
 
 .section-contact .contact-people p {
   margin: 0;
-  aspect-ratio: 1;
-  overflow: hidden;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-out;
+}
+
+.section-contact .contact-people p.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .section-contact .contact-people img {
@@ -365,6 +422,40 @@
     grid-area: 1 / 9;
   }
 
+  .divider-footer {
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .divider-footer .cell-1 {
+    grid-area: 2 / 1;
+  }
+
+  .divider-footer .cell-2 {
+    grid-area: 1 / 2;
+  }
+
+  .divider-footer .cell-3 {
+    grid-area: 2 / 6;
+  }
+
+  .divider-footer .cell-4 {
+    grid-area: 1 / 7;
+  }
+
+  .divider-footer .cell-5 {
+    grid-area: 2 / 8;
+  }
+
+  .divider-footer .cell-6 {
+    grid-area: 1 / 9;
+  }
+
+  .divider-footer .cell-photo {
+    grid-column: 4 / span 2;
+    grid-row: 1 / span 2;
+  }
+
   /* Work section desktop — 9-column grid with video on left, carousel on right */
   .section-work {
     display: grid;
@@ -423,10 +514,8 @@
   }
 
   .section-contact .contact-people {
-    grid-column: 6 / span 4;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    background-color: var(--color-yellow);
+    grid-column: 6 / span 3;
+    aspect-ratio: 3 / 4;
   }
 
   .section-contact .contact-locations {
